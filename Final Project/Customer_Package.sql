@@ -38,7 +38,7 @@ INSERT INTO Customer_Package (customer_id, package_id) VALUES
 (25, 71), (25, 75), (25, 77), (25, 79), (25, 80);
 
 
--- Join Customer Table and Package Table based on Last Name and Package Created Time in ascending order.
+-- Join Customer Table and Package Table. Last Name and Package Created Time are in ascending order.
 SELECT 
     c.last_name,
     c.first_name,

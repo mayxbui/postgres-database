@@ -33,15 +33,17 @@ UPDATE Customer
 SET first_name = split_part(full_name, ' ', 1),
     last_name = split_part(full_name, ' ', array_length(string_to_array(full_name, ' '), 1));
 
-
-CREATE OR REPLACE VIEW Customer_View AS
-SELECT 
-    id,
+-- Create a view with last name in ascending
+CREATE OR REPLACE VIEW customer_view AS
+SELECT
     first_name,
     last_name,
     email_address,
     gender
 FROM Customer
-ORDER BY id;
+ORDER BY last_name;
 
+--DROP VIEW customer_view;
+
+SELECT * FROM customer_view;
 

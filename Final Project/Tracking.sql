@@ -41,3 +41,24 @@ INSERT INTO Tracking (package_id, hub_id, location, status, active) VALUES
 (37, 23, 'Baltimore', 'In Transit', TRUE);
 
 SELECT * FROM Tracking;
+
+--DROP FUNCTION count_by_status()
+
+-- Create a function to count the total number of packages based on status: 'In Transit', 'Delivered', 'Delayed'.
+CREATE OR REPLACE FUNCTION count_by_status()
+RETURNS TABLE (
+    status VARCHAR(50),
+    total BIGINT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        t.status,
+        COUNT(*) total
+    FROM Tracking t
+    GROUP BY t.status
+    ORDER BY total DESC;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT * FROM count_by_status();
